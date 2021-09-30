@@ -1,0 +1,10 @@
+<div class="form-group">
+    <%= f.label :enologist_id %>
+    <%#= f.select :enologist_id, options_for_select(@strains) %>
+    <%= f.collection_select :enologist_id, @enologists, :id, :name %>
+</div>
+
+<div class="form-group">
+    <%= f.label :grade %>
+    <%= f.number_field :grade %>
+</div>

@@ -1,0 +1,52 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Enologists</h1>
+
+<table class="table table-striped table-">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Age</th>
+      <th>Nacionality</th>
+      <th>Magazines</th>
+      <% if user_signed_in? %>
+        <% if current_user.admin %>
+          <th colspan="3"></th>
+        <% end %>
+      <% end %>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @enologists.each do |enologist| %>
+      <tr>
+        <td><%= enologist.name %></td>
+        <td><%= enologist.age %></td>
+        <td><%= enologist.nacionality %></td>
+        <td>
+          <ul>
+            <% enologist.enologist_magazines.each do |em| %>
+              <li><%= em.magazine.name %></li>
+              <ul>
+                <li>Edtior:<%= em.editor %></li>
+                <li>Escritor:<%= em.writer %></li>
+                <li>Crítico:<%= em.reviewer %></li>
+              </ul>
+            <% end %>
+          </ul>
+        </td>
+        <% if user_signed_in? %>
+          <% if current_user.admin %>
+            <td><%= link_to 'Show', enologist %></td>
+            <td><%= link_to 'Edit', edit_enologist_path(enologist) %></td>
+            <td><%= link_to 'Destroy', enologist, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% end %>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Enologist', new_enologist_path %>
