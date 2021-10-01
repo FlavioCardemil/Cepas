@@ -29,6 +29,16 @@
             <% end %>
           </ul>
         </td>
+        <td>
+          <ul>
+            <% wine.enologist_wines.each do |ew| %>
+              <li><%= ew.enologist.name %></li>
+              <ul>
+                <li>Nota:<%= ew.grade %></li>
+              </ul>
+            <% end %>
+          </ul>
+        </td>
         <% if user_signed_in? %>
           <% if current_user.admin %>
             <td><%= link_to 'Show', wine %></td>
